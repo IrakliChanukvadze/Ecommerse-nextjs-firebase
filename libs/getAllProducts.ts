@@ -19,7 +19,7 @@ const productsCollectionRef = collection(db, "products");
 
 export const getProducts = async () => {
   const data: any = await getDocs(productsCollectionRef);
-  console.log(data);
+  // console.log(data);
 
   const products: Products = data.docs.map((item: any) => ({
     ...item.data(),
