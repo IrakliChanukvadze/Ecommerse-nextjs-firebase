@@ -28,7 +28,7 @@ async function ProductPage({ params: { id } }: Params) {
     <div>
       ProductPage - {id}
       {data.map((item) => (
-        <h3>{item.id}</h3>
+        <h3 key={item.id}>{item.id}</h3>
       ))}
       <Link href="/">link to home</Link>
     </div>

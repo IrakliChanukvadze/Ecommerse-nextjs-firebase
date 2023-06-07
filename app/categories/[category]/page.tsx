@@ -24,7 +24,7 @@ async function Category({ params: { category } }: Params) {
     <div>
       Category {category}
       {data.map((item) => (
-        <h2>{item.title}</h2>
+        <h2 key={item.title}>{item.title}</h2>
       ))}
     </div>
   );
