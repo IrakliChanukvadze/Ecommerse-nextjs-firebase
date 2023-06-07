@@ -1,4 +1,4 @@
-import getCategory from "@/libs/getCategory";
+import { getCategory } from "@/libs/getCategory";
 import { Metadata } from "next";
 import React from "react";
 
@@ -20,7 +20,14 @@ export async function generateMetadata({
 
 async function Category({ params: { category } }: Params) {
   const data = await getCategory(category);
-  return <div>Category {category}</div>;
+  return (
+    <div>
+      Category {category}
+      {data.map((item) => (
+        <h2>{item.title}</h2>
+      ))}
+    </div>
+  );
 }
 
 export default Category;
