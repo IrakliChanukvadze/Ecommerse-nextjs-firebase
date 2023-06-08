@@ -55,35 +55,54 @@ async function ProductPage({ params: { id } }: Params) {
               {item.title}
             </Typography>
           </Grid>
-          <Grid container display="flex" justifyContent="space-around">
-            <Image
-              src={item.image}
-              alt="product"
-              width={300}
-              height={300}
-              style={{
-                // boxShadow: "5px 5px 10px rgba(0,0,0, 0.5)",
-                padding: "10px",
-                borderRadius: "20px",
-              }}
-            />
-            <Card
-              sx={{
-                width: "300px",
-                height: "300px",
-                padding: "20px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
+          <Grid container>
+            <Grid
+              item
+              xs={8}
+              md={6}
+              sx={{ margin: "auto" }}
+              display={"flex"}
+              justifyContent={"center"}
+              spacing={40}
             >
-              <Typography variant="h5">
-                <strong>$ {item.price}</strong>
-                <hr />
-              </Typography>
-              <PromoCodeInput />
-              <Button variant="contained">Add to cart</Button>
-            </Card>
+              <Image
+                src={item.image}
+                alt="product"
+                width={300}
+                height={300}
+                style={{
+                  // boxShadow: "5px 5px 10px rgba(0,0,0, 0.5)",
+                  padding: "10px",
+                  borderRadius: "20px",
+                }}
+              />
+            </Grid>
+            <Grid
+              item
+              xs={8}
+              md={6}
+              sx={{ margin: "auto" }}
+              display={"flex"}
+              justifyContent={"center"}
+            >
+              <Card
+                sx={{
+                  width: "300px",
+                  height: "300px",
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography variant="h5">
+                  <strong>$ {item.price}</strong>
+                  <hr />
+                </Typography>
+                <PromoCodeInput />
+                <Button variant="contained">Add to cart</Button>
+              </Card>
+            </Grid>
           </Grid>
           {/* <Grid item>
            
