@@ -1,7 +1,12 @@
 import React from "react";
+import TogglerNav from "./TogglerNav";
 
 function NavBar() {
-  return <div>NavBar</div>;
+  return (
+    <div>
+      NavBar <TogglerNav />
+    </div>
+  );
 }
 
 export default NavBar;

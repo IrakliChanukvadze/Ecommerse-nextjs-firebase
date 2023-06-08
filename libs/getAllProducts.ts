@@ -3,16 +3,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 
-type Products = {
-  category: string;
-  description: string;
-  id: number;
-  image: string;
-  price: number;
-  rating: { rate: number; count: number };
-  title: string;
-}[];
-
 // const [products, setProducts] = useState<Products>([]);
 const productsCollectionRef = collection(db, "products");
 // useEffect(() => {
