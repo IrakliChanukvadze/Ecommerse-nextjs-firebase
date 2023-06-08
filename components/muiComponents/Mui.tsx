@@ -18,7 +18,8 @@ import {
   TextField,
   Tooltip,
   Typography,
-  Box
+  Box,
+  Switch,
 } from "@mui/material";
 
 export {
@@ -40,5 +41,6 @@ export {
   TextField,
   Tooltip,
   Typography,
-  Box
+  Box,
+  Switch,
 };
