@@ -20,6 +20,7 @@ import {
   Typography,
   Box,
   Switch,
+  Menu,
 } from "@mui/material";
 export {
   AppBar,
@@ -42,4 +43,5 @@ export {
   Typography,
   Box,
   Switch,
+  Menu,
 };
