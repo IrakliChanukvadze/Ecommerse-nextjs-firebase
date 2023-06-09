@@ -1,13 +1,26 @@
 "use client";
 import { TextField } from "@/components/muiComponents/Mui";
-import { useDebounce } from "@/libs/useDebounce";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
-function PromoCodeInput() {
+type PromoCodeInputProps = {
+  promoCodes: PromoCodes;
+};
+
+function PromoCodeInput(props: PromoCodeInputProps) {
   // TODO: Add promo code validation
   const [promoCode, setPromoCode] = useState("");
-  const [dummyCode, setDummyCode] = useState("promo");
-  const debounce = useDebounce;
+  const [promoCodeIsValid, setPromoCodeIsValid] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (promoCode) {
+      const validCodes = Object.keys(props.promoCodes[0]);
+      validCodes.forEach((code) => {
+        if (code === promoCode) {
+          console.log("success", code);
+        }
+      });
+    }
+  }, [promoCode, props.promoCodes]);
 
   function handlePromoCode(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -15,12 +28,14 @@ function PromoCodeInput() {
     setPromoCode(e.target.value);
   }
 
-  function handleChange() {
-    debounce(handlePromoCode, 1000);
-  }
-
   return (
-    <TextField label="Promo Code" onChange={handleChange} value={promoCode} />
+    <>
+      <TextField
+        label="Promo Code"
+        onChange={handlePromoCode}
+        value={promoCode}
+      />
+    </>
   );
 }
 

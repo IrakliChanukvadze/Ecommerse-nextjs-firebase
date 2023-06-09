@@ -2,16 +2,9 @@ import React from "react";
 import { Metadata } from "next";
 import { getSingleProduct } from "@/libs/getSingleProducts";
 import Image from "next/image";
-import {
-  AppBar,
-  Typography,
-  Card,
-  Grid,
-  Button,
-  TextField,
-  Box,
-} from "@/components/muiComponents/Mui";
+import { Typography, Card, Grid, Button } from "@/components/muiComponents/Mui";
 import PromoCodeInput from "./PromoCodeInput";
+import { getPromoCodes } from "@/libs/getPromoCodes";
 
 type Params = {
   params: {
@@ -32,16 +25,11 @@ export async function generateMetadata({
 async function ProductPage({ params: { id } }: Params) {
   const data = await getSingleProduct(id);
 
-  function handlePromoCode() {}
+  const promoCodes = await getPromoCodes();
+  // console.log(promoCodes);
 
   return (
-    <Grid
-      container
-      // display="flex"
-      // justifyContent="center"
-      // alignItems="center"
-      // height="100vh"
-    >
+    <Grid container>
       {data.map((item) => (
         <Grid
           container
@@ -71,7 +59,6 @@ async function ProductPage({ params: { id } }: Params) {
                 width={300}
                 height={300}
                 style={{
-                  // boxShadow: "5px 5px 10px rgba(0,0,0, 0.5)",
                   padding: "10px",
                   borderRadius: "20px",
                 }}
@@ -99,14 +86,11 @@ async function ProductPage({ params: { id } }: Params) {
                   <strong>$ {item.price}</strong>
                   <hr />
                 </Typography>
-                <PromoCodeInput />
+                <PromoCodeInput promoCodes={promoCodes} />
                 <Button variant="contained">Add to cart</Button>
               </Card>
             </Grid>
           </Grid>
-          {/* <Grid item>
-           
-          </Grid> */}
         </Grid>
       ))}
     </Grid>
