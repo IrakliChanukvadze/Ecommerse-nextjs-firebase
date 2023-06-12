@@ -27,6 +27,10 @@ let lightTheme = createTheme({
     subtitle2: {
       fontWeight: "bold",
     },
+    h6: {
+      fontWeight: "bold",
+      letterSpacing: "0.05em",
+    },
     button: {
       fontWeight: "bold",
       letterSpacing: "0.15em",
@@ -56,6 +60,10 @@ let darkTheme = createTheme({
     fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
     subtitle2: {
       fontWeight: "bold",
+    },
+    h6: {
+      fontWeight: "bold",
+      letterSpacing: "0.05em",
     },
     button: {
       fontWeight: "bold",

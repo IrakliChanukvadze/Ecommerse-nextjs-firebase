@@ -1,6 +1,8 @@
+import SingleItem from "@/components/SingleItem";
 import { getCategory } from "@/libs/getCategory";
 import { Metadata } from "next";
 import React from "react";
+import { Grid } from "@/components/muiComponents/Mui";
 
 type Params = {
   params: {
@@ -11,22 +13,25 @@ type Params = {
 export async function generateMetadata({
   params: { category },
 }: Params): Promise<Metadata> {
-  // const category = String(productId);
-
   return {
-    title: String(category),
+    title: String(category.replace("%20", " ")),
   };
 }
 
 async function Category({ params: { category } }: Params) {
-  const data = await getCategory(category);
+  const data = await getCategory(category.replace("%20", " "));
   return (
-    <div>
-      Category {category}
+    <Grid
+      container
+      spacing={6}
+      justifyContent="center"
+      alignItems="center"
+      marginTop={"25px"}
+    >
       {data.map((item) => (
-        <h2 key={item.title}>{item.title}</h2>
+        <SingleItem {...item} key={item.id} />
       ))}
-    </div>
+    </Grid>
   );
 }
 

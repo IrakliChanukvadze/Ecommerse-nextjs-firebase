@@ -3,7 +3,6 @@ import { Metadata } from "next";
 
 import Link from "next/link";
 import { getSingleProduct } from "@/libs/getSingleProducts";
-import { getProducts } from "@/libs/getAllProducts";
 
 type Params = {
   params: {
