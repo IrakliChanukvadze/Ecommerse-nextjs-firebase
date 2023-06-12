@@ -13,10 +13,8 @@ type Params = {
 export async function generateMetadata({
   params: { category },
 }: Params): Promise<Metadata> {
-  // const category = String(productId);
-
   return {
-    title: String(category),
+    title: String(category.replace("%20", " ")),
   };
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 import TogglerNav from "./TogglerNav";
 import { Box, Menu, Typography } from "./muiComponents/Mui";
 import NavBarMenu from "./NavBarMenu";
+import AuthContainer from "./AuthContainer";
 
 function NavBar() {
   return (
@@ -15,7 +16,10 @@ function NavBar() {
     >
       <Typography variant="h6">Gurromerce</Typography>
       <NavBarMenu />
-      <TogglerNav />
+      <Box display={"flex"} alignItems={"center"}>
+        <AuthContainer />
+        <TogglerNav />
+      </Box>
     </Box>
   );
 }

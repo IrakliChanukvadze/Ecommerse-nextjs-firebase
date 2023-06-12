@@ -61,6 +61,7 @@ export default function BasicMenu() {
       >
         {categories?.map((item) => (
           <Link
+            key={item}
             href={item === "all" ? "/" : `/categories/${item}`}
             style={{ textDecoration: "none" }}
           >

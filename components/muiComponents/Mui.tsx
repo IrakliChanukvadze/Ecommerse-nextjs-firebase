@@ -21,6 +21,7 @@ import {
   Box,
   Switch,
   Menu,
+  FormControl,
 } from "@mui/material";
 export {
   AppBar,
@@ -44,4 +45,5 @@ export {
   Box,
   Switch,
   Menu,
+  FormControl,
 };
