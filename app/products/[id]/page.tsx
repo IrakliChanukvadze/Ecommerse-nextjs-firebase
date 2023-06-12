@@ -26,7 +26,6 @@ async function ProductPage({ params: { id } }: Params) {
   const data = await getSingleProduct(id);
 
   const promoCodes = await getPromoCodes();
-  // console.log(promoCodes);
 
   return (
     <Grid container>

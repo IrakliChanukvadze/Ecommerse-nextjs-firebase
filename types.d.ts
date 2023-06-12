@@ -17,3 +17,10 @@ type PromoCode = {
 type PromoCodes = PromoCode[];
 
 type GetPromoCodes = () => Promise<PromoCodes>;
+
+type Cart = [
+  {
+    amount: number;
+    cartItems: Products;
+  }
+];

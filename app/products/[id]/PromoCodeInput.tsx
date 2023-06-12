@@ -7,7 +7,6 @@ type PromoCodeInputProps = {
 };
 
 function PromoCodeInput(props: PromoCodeInputProps) {
-  // TODO: Add promo code validation
   const [promoCode, setPromoCode] = useState("");
   const [promoCodeIsValid, setPromoCodeIsValid] = useState<boolean>(false);
 
