@@ -4,6 +4,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 
 type PromoCodeInputProps = {
   promoCodes: PromoCodes;
+  price: number;
 };
 
 function PromoCodeInput(props: PromoCodeInputProps) {
@@ -30,17 +31,17 @@ function PromoCodeInput(props: PromoCodeInputProps) {
     return () => clearTimeout(timeout);
   }, [promoCode, props.promoCodes]);
 
-  function handlePromoCode(
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    setPromoCode(e.target.value);
-  }
+  const handlePromoCode =
+    (setPromoCode: any) =>
+    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setPromoCode(e.target.value);
+    };
 
   return (
     <>
       <TextField
         label="Promo Code"
-        onChange={handlePromoCode}
+        onChange={handlePromoCode(setPromoCode)}
         value={promoCode}
         color={promoCodeIsValid ? "success" : !promoCode ? "info" : "error"}
         helperText={!promoCodeIsValid && promoCode && "Incorrect Promo Code"}

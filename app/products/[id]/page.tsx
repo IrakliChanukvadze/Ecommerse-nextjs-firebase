@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { getSingleProduct } from "@/libs/getSingleProducts";
+
 import Image from "next/image";
 import { Typography, Card, Grid, Button } from "@/components/muiComponents/Mui";
 import PromoCodeInput from "./PromoCodeInput";
@@ -85,7 +86,7 @@ async function ProductPage({ params: { id } }: Params) {
                   <strong>$ {item.price}</strong>
                   <hr />
                 </Typography>
-                <PromoCodeInput promoCodes={promoCodes} />
+                <PromoCodeInput price={item.price} promoCodes={promoCodes} />
                 <Button variant="contained">Add to cart</Button>
               </Card>
             </Grid>

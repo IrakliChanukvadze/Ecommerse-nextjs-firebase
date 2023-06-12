@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.DB_API_KEY,
+  apiKey: "AIzaSyC9KYEhFzqrvTRbiA12uO03bDyc133SUYc",
   authDomain: "gurmmerse.firebaseapp.com",
   projectId: "gurmmerse",
   storageBucket: "gurmmerse.appspot.com",
@@ -10,6 +10,6 @@ const firebaseConfig = {
   appId: process.env.DB_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);

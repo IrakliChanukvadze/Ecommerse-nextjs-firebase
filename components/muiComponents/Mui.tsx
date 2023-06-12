@@ -20,6 +20,8 @@ import {
   Typography,
   Box,
   Switch,
+  Menu,
+  FormControl,
 } from "@mui/material";
 
 export {
@@ -43,4 +45,6 @@ export {
   Typography,
   Box,
   Switch,
+  Menu,
+  FormControl,
 };

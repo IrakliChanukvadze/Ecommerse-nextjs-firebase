@@ -1,11 +1,18 @@
 "use client";
 import React, { useContext } from "react";
-import { Switch } from "./muiComponents/Mui";
+import { Box, Switch, Typography } from "./muiComponents/Mui";
 import { Context } from "@/Context/context";
 
 function TogglerNav() {
   const { changeToggle } = useContext(Context);
-  return <Switch onClick={changeToggle} />;
+  return (
+    <Box display={"flex"} alignItems={"center"} gap={1}>
+      {" "}
+      <Typography variant="subtitle2">Dark</Typography>{" "}
+      <Switch onClick={changeToggle} />{" "}
+      <Typography variant="subtitle2">Light</Typography>
+    </Box>
+  );
 }
 
 export default TogglerNav;
