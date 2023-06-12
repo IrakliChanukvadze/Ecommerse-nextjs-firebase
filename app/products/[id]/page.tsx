@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { getSingleProduct } from "@/libs/getSingleProducts";
+
 import Image from "next/image";
 import { Typography, Card, Grid, Button } from "@/components/muiComponents/Mui";
 import PromoCodeInput from "./PromoCodeInput";

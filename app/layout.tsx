@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ContextProvider } from "@/Context/context";
+import { Box } from "@/components/muiComponents/Mui";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
         <MuiThemeProvider>
           <body>
             <NavBar />
-            {children}
+            <Box paddingX={"30px"}>{children}</Box>
           </body>
         </MuiThemeProvider>
       </ContextProvider>
