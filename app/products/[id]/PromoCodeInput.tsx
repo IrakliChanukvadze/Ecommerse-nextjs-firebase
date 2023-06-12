@@ -12,14 +12,23 @@ function PromoCodeInput(props: PromoCodeInputProps) {
   const [promoCodeIsValid, setPromoCodeIsValid] = useState<boolean>(false);
 
   useEffect(() => {
-    if (promoCode) {
+    let timeout = setTimeout(() => {
       const validCodes = Object.keys(props.promoCodes[0]);
+      let validation = false;
       validCodes.forEach((code) => {
         if (code === promoCode) {
+          validation = true;
           console.log("success", code);
         }
       });
-    }
+      if (validation) {
+        setPromoCodeIsValid(true);
+      } else {
+        setPromoCodeIsValid(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(timeout);
   }, [promoCode, props.promoCodes]);
 
   function handlePromoCode(
@@ -34,6 +43,8 @@ function PromoCodeInput(props: PromoCodeInputProps) {
         label="Promo Code"
         onChange={handlePromoCode}
         value={promoCode}
+        color={promoCodeIsValid ? "success" : !promoCode ? "info" : "error"}
+        helperText={!promoCodeIsValid && promoCode && "Incorrect Promo Code"}
       />
     </>
   );
