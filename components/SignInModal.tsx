@@ -10,6 +10,8 @@ import {
 import { useForm } from "react-hook-form";
 import { Context } from "@/Context/context";
 import { SignIn } from "@/libs/firebaseAuth";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { getCurrentUser } from "@/libs/getCurrentUser";
 
 type Props = {
   open: boolean;
@@ -31,13 +33,15 @@ function SignInModal({ open, onClose }: Props) {
   const { currentUser, setCurrentUser, toggler } = useContext(Context);
   const [authErr, setAuthErr] = useState<string>("");
   const [showPass, setShowPass] = useState<boolean>(false);
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
+    const d: any = await getCurrentUser(data.email);
     const signInFireBase = SignIn(data.email, data.password, setCurrentUser);
     signInFireBase
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        setCurrentUser(user);
+
+        setCurrentUser(d[0]);
         onClose();
         reset({
           email: "",
@@ -77,6 +81,7 @@ function SignInModal({ open, onClose }: Props) {
             sx={{
               width: "60%",
               minWidth: "230px",
+              margin: "auto",
               marginBottom: "20px",
             }}
             {...register("email", {
@@ -87,23 +92,52 @@ function SignInModal({ open, onClose }: Props) {
               },
             })}
           />
-
-          <TextField
-            color={errors.password ? "error" : "primary"}
-            label="password"
-            type={showPass ? "text" : "password"}
-            sx={{ width: "60%", minWidth: "230px", margin: "auto" }}
-            {...register("password", {
-              required: "required",
-            })}
-          />
-          <p
-            onClick={() => {
-              setShowPass((prev) => !prev);
+          <Box
+            position={"relative"}
+            sx={{
+              width: "60%",
+              minWidth: "230px",
+              margin: "auto",
+              marginBottom: "20px",
             }}
           >
-            {!showPass ? "show" : "hide"} password
-          </p>
+            <TextField
+              color={errors.password ? "error" : "primary"}
+              label="password"
+              type={showPass ? "text" : "password"}
+              sx={{ width: "100%" }}
+              {...register("password", {
+                required: "required",
+              })}
+            />
+            {showPass ? (
+              <AiFillEye
+                style={{
+                  position: "absolute",
+                  right: "20px",
+                  top: "50%",
+                  transform: "translate(0, -50%)",
+                }}
+                size={25}
+                onClick={() => {
+                  setShowPass(false);
+                }}
+              />
+            ) : (
+              <AiFillEyeInvisible
+                style={{
+                  position: "absolute",
+                  right: "20px",
+                  top: "50%",
+                  transform: "translate( 0, -50%)",
+                }}
+                size={25}
+                onClick={() => {
+                  setShowPass(true);
+                }}
+              />
+            )}
+          </Box>
           {authErr && <p>{authErr}</p>}
           <Button type="submit" sx={{ width: "200px", margin: "auto" }}>
             submit
