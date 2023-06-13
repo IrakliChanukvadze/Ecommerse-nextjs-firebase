@@ -1,5 +1,4 @@
 "use client";
-import { User } from "firebase/auth";
 import React, { useState } from "react";
 
 type Context = {
@@ -21,7 +20,6 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
   const [toggler, setToggler] = useState<Theme>("dark");
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const changeToggle = () => {
-    console.log(toggler);
     setToggler((prev) => (prev === "dark" ? "light" : "dark"));
   };
   return (
