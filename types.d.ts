@@ -27,3 +27,18 @@ type User = {
   cart: object;
   isAdmin: boolean;
 };
+
+type PromoCode = {
+  [key: string]: number;
+};
+
+type PromoCodes = PromoCode[];
+
+type GetPromoCodes = () => Promise<PromoCodes>;
+
+type Cart = [
+  {
+    amount: number;
+    cartItems: Products;
+  }
+];

@@ -1,11 +1,17 @@
-// "use client";
-// import React, { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 
-// const [products, setProducts] = useState<Products>([]);
+type Products = {
+  category: string;
+  description: string;
+  id: number;
+  image: string;
+  price: number;
+  rating: { rate: number; count: number };
+  title: string;
+}[];
+
 const productsCollectionRef = collection(db, "products");
-// useEffect(() => {
 
 export const getProducts = async () => {
   const data: any = await getDocs(productsCollectionRef);
