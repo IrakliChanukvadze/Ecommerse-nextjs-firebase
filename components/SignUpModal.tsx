@@ -12,6 +12,8 @@ import { Context } from "@/Context/context";
 import { SignUp } from "@/libs/firebaseAuth";
 import { IconButton, InputAdornment } from "@mui/material";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { addUser } from "@/libs/addUser";
+import { getCurrentUser } from "@/libs/getCurrentUser";
 
 type Props = {
   open: boolean;
@@ -33,13 +35,16 @@ function SignInModal({ open, onClose }: Props) {
   const { currentUser, setCurrentUser, toggler } = useContext(Context);
   const [authErr, setAuthErr] = useState<string>("");
   const [showPass, setShowPass] = useState<boolean>(false);
-  const onSubmit = handleSubmit((data) => {
+
+  const onSubmit = handleSubmit(async (data) => {
+    const d: any = await getCurrentUser(data.email);
     const signInFireBase = SignUp(data.email, data.password, setCurrentUser);
     signInFireBase
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        setCurrentUser(user);
+        setCurrentUser(d[0]);
+        addUser({ email: data.email });
         onClose();
         reset({
           email: "",
