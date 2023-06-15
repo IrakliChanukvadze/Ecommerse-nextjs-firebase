@@ -1,15 +1,13 @@
-"use client";
 import { getProducts } from "@/libs/getAllProducts";
 import SingleItem from "@/components/SingleItem";
 import { Grid } from "@/components/muiComponents/Mui";
-import { getCategory } from "@/libs/getCategory";
 
 export default async function Home() {
   let data = await getProducts();
-  const props = { variant: "contained" };
-  const filterCategory = async (category: string) => {
-    data = await getCategory(category);
-  };
+  // const props = { variant: "contained" };
+  // const filterCategory = async (category: string) => {
+  //   data = await getCategory(category);
+  // };
 
   return (
     <Grid

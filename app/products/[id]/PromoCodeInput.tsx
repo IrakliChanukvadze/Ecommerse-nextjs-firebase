@@ -29,7 +29,7 @@ function PromoCodeInput(props: PromoCodeInputProps) {
     }, 500);
 
     return () => clearTimeout(timeout);
-  }, [promoCode, props.promoCodes]);
+  }, [promoCode]);
 
   const handlePromoCode =
     (setPromoCode: any) =>
