@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Typography, Card, Grid, Button } from "@/components/muiComponents/Mui";
 import PromoCodeInput from "./PromoCodeInput";
 import { getPromoCodes } from "@/libs/getPromoCodes";
+import AddToCartButton from "./AddToCartButton";
 
 type Params = {
   params: {
@@ -87,7 +88,7 @@ async function ProductPage({ params: { id } }: Params) {
                   <hr />
                 </Typography>
                 <PromoCodeInput price={item.price} promoCodes={promoCodes} />
-                <Button variant="contained">Add to cart</Button>
+                <AddToCartButton product={data} />
               </Card>
             </Grid>
           </Grid>

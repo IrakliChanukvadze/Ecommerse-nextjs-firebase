@@ -24,8 +24,9 @@ type User = {
     date: string;
     amount: number;
   };
-  cart: object;
+  cart: object[];
   isAdmin: boolean;
+  id: string;
 };
 
 type PromoCode = {
