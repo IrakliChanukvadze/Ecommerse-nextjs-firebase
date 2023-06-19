@@ -8,6 +8,7 @@ type Product = {
   price: number;
   rating: { rate: number; count: number };
   title: string;
+  amount: number;
 };
 
 type User = {
@@ -24,9 +25,10 @@ type User = {
     date: string;
     amount: number;
   };
-  cart: object[];
+  cart: Product[];
   isAdmin: boolean;
   id: string;
+  uid: string;
 };
 
 type PromoCode = {

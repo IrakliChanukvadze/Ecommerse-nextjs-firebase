@@ -1,9 +1,8 @@
 import React from "react";
 import TogglerNav from "./TogglerNav";
-import { Box, Menu, Typography } from "./muiComponents/Mui";
+import { Box, Typography } from "./muiComponents/Mui";
 import NavBarMenu from "./NavBarMenu";
 import AuthContainer from "./AuthContainer";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
@@ -23,8 +22,8 @@ function NavBar() {
       <NavBarMenu />
       <Box display={"flex"} alignItems={"center"} gap="10px">
         <AuthContainer />
-        <Link href="/cart">
-          <AiOutlineShoppingCart fontSize="20px" />
+        <Link href="/cart" style={{ color: "white" }}>
+          <AiOutlineShoppingCart fontSize="30px" />
         </Link>
         <TogglerNav />
       </Box>
