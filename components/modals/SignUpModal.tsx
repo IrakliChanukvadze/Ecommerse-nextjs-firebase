@@ -44,7 +44,6 @@ function SignUpModal({ open, onClose }: Props) {
         // Signed in
         const user = userCredential.user;
         console.log("d[0", d);
-        // localStorage.setItem("gurromerceUser", JSON.stringify(d[0]));
 
         addUser({
           email: data.email,
