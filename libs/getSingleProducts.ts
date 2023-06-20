@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 
 const productsCollectionRef = collection(db, "products");
@@ -8,6 +8,7 @@ export const getSingleProduct = async (id: number) => {
 
   const products: Products = data.docs.map((item: any) => ({
     ...item.data(),
+    uid: item.id,
   }));
   return products.filter((item) => item.id == id);
 };

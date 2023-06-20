@@ -4,28 +4,39 @@ type Product = {
   category: string;
   description: string;
   id: number;
+  uid: string;
   image: string;
   price: number;
   rating: { rate: number; count: number };
   title: string;
+  fetchData: () => void;
 };
 
 type User = {
   email: string;
   balance: number;
-  orders: {
-    totalSum: number;
-    products: {
-      [name]: string;
-    };
-  }[];
-  transactions: {
-    type: "withdraw" | "deposit";
-    date: string;
-    amount: number;
-  };
+  orders:
+    | {
+        totalSum: number;
+        products: {
+          [name]: string;
+        };
+      }[]
+    | [];
+  messages:
+    | {
+        from: string;
+        message: string;
+        userId: string;
+        transferId: string;
+        amount: number;
+        type: "deposit" | "withdrow";
+      }[]
+    | [];
+
   cart: object;
   isAdmin: boolean;
+  uid: "string";
 };
 
 type PromoCode = {

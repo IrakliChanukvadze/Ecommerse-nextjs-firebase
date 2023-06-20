@@ -1,6 +1,5 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Typography } from "@mui/material";
@@ -9,10 +8,6 @@ import Link from "next/link";
 import { Context } from "@/Context/context";
 
 export default function BasicMenu() {
-  //   const myPromise = new Promise(async (resolve, reject) => {
-
-  //     resolve(categories);
-  //   });
   const { toggler } = useContext(Context);
   const [categories, setCategories] = useState<string[]>();
 

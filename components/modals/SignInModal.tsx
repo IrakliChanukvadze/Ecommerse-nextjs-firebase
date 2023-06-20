@@ -1,12 +1,13 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
   FormControl,
   Modal,
   TextField,
-} from "./muiComponents/Mui";
+  Typography,
+} from "../muiComponents/Mui";
 import { useForm } from "react-hook-form";
 import { Context } from "@/Context/context";
 import { SignIn } from "@/libs/firebaseAuth";
@@ -40,7 +41,7 @@ function SignInModal({ open, onClose }: Props) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-
+        localStorage.setItem("gurromerceUser", JSON.stringify(d[0]));
         setCurrentUser(d[0]);
         onClose();
         reset({
@@ -64,12 +65,15 @@ function SignInModal({ open, onClose }: Props) {
         top={"50%"}
         left={"50%"}
         width={"500px"}
-        height={"500px"}
+        height={"380px"}
         sx={{
           transform: "translate(-50%, -50%)",
           backgroundColor: toggler === "dark" ? "black" : "white",
         }}
       >
+        <Typography variant="h6" textAlign={"center"} marginY={"20px"}>
+          Sign In
+        </Typography>
         <FormControl
           component={"form"}
           onSubmit={onSubmit}
@@ -77,7 +81,7 @@ function SignInModal({ open, onClose }: Props) {
         >
           <TextField
             color={errors.email ? "error" : "primary"}
-            label="product code"
+            label="email"
             sx={{
               width: "60%",
               minWidth: "230px",
@@ -98,7 +102,6 @@ function SignInModal({ open, onClose }: Props) {
               width: "60%",
               minWidth: "230px",
               margin: "auto",
-              marginBottom: "20px",
             }}
           >
             <TextField
@@ -138,8 +141,20 @@ function SignInModal({ open, onClose }: Props) {
               />
             )}
           </Box>
-          {authErr && <p>{authErr}</p>}
-          <Button type="submit" sx={{ width: "200px", margin: "auto" }}>
+          {authErr && (
+            <Typography
+              variant="subtitle2"
+              textAlign={"center"}
+              sx={{ color: "red", marginTop: "5px" }}
+            >
+              {authErr}
+            </Typography>
+          )}
+          <Button
+            type="submit"
+            variant="outlined"
+            sx={{ width: "200px", margin: "auto", marginTop: "20px" }}
+          >
             submit
           </Button>
         </FormControl>

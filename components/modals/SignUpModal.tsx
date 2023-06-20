@@ -1,16 +1,16 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
   FormControl,
   Modal,
   TextField,
-} from "./muiComponents/Mui";
+  Typography,
+} from "../muiComponents/Mui";
 import { useForm } from "react-hook-form";
 import { Context } from "@/Context/context";
 import { SignUp } from "@/libs/firebaseAuth";
-import { IconButton, InputAdornment } from "@mui/material";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { addUser } from "@/libs/addUser";
 import { getCurrentUser } from "@/libs/getCurrentUser";
@@ -25,7 +25,7 @@ interface FormTypes {
   password: string;
 }
 
-function SignInModal({ open, onClose }: Props) {
+function SignUpModal({ open, onClose }: Props) {
   const {
     register,
     handleSubmit,
@@ -43,8 +43,14 @@ function SignInModal({ open, onClose }: Props) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        setCurrentUser(d[0]);
-        addUser({ email: data.email });
+        console.log("d[0", d);
+        // localStorage.setItem("gurromerceUser", JSON.stringify(d[0]));
+
+        addUser({
+          email: data.email,
+          isAdmin: false,
+          messages: [],
+        });
         onClose();
         reset({
           email: "",
@@ -67,20 +73,23 @@ function SignInModal({ open, onClose }: Props) {
         top={"50%"}
         left={"50%"}
         width={"500px"}
-        height={"500px"}
+        height={"380px"}
         sx={{
           transform: "translate(-50%, -50%)",
           backgroundColor: toggler === "dark" ? "black" : "white",
         }}
       >
+        <Typography variant="h6" textAlign={"center"} marginY={"15px"}>
+          Sign Up
+        </Typography>
         <FormControl
           component={"form"}
           onSubmit={onSubmit}
-          sx={{ width: "100%", paddingY: "20px" }}
+          sx={{ width: "100%" }}
         >
           <TextField
             color={errors.email ? "error" : "primary"}
-            label="product code"
+            label="email"
             sx={{
               width: "60%",
               minWidth: "230px",
@@ -101,7 +110,6 @@ function SignInModal({ open, onClose }: Props) {
               width: "60%",
               minWidth: "230px",
               margin: "auto",
-              marginBottom: "20px",
             }}
           >
             <TextField
@@ -141,8 +149,20 @@ function SignInModal({ open, onClose }: Props) {
               />
             )}
           </Box>
-          {authErr && <p>{authErr}</p>}
-          <Button type="submit" sx={{ width: "200px", margin: "auto" }}>
+          {authErr && (
+            <Typography
+              variant="subtitle2"
+              textAlign={"center"}
+              sx={{ color: "red", marginTop: "5px" }}
+            >
+              {authErr}
+            </Typography>
+          )}
+          <Button
+            variant="outlined"
+            type="submit"
+            sx={{ width: "200px", margin: "auto", marginTop: "20px" }}
+          >
             Sign Up
           </Button>
         </FormControl>
@@ -151,4 +171,4 @@ function SignInModal({ open, onClose }: Props) {
   );
 }
 
-export default SignInModal;
+export default SignUpModal;

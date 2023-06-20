@@ -1,34 +1,23 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { Box, Button, Typography } from "./muiComponents/Mui";
-import SignInModal from "./SignInModal";
+import { Avatar, Box, Button, Typography } from "./muiComponents/Mui";
+import SignInModal from "./modals/SignInModal";
 import { Context } from "@/Context/context";
-import SignUpModal from "./SignUpModal";
-import { redirect, useRouter } from "next/navigation";
+import SignUpModal from "./modals/SignUpModal";
+import { useRouter } from "next/navigation";
+import ProfileMenu from "./ProfileMenu";
 
 function AuthContainer() {
-  const router = useRouter();
   const { currentUser } = useContext(Context);
   const [signInOpen, setSignInOpen] = useState(false);
   const [signUpOpen, setSignUpOpen] = useState(false);
-  console.log(currentUser);
   return (
     <Box display={"flex"}>
       <SignInModal open={signInOpen} onClose={() => setSignInOpen(false)} />
       <SignUpModal open={signUpOpen} onClose={() => setSignUpOpen(false)} />
+
       {currentUser?.email ? (
-        <>
-          <Typography variant="subtitle2">{currentUser?.email}</Typography>
-          {currentUser?.isAdmin && (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => router.push("/admin")}
-            >
-              <Typography variant="subtitle2">Admin</Typography>
-            </Button>
-          )}
-        </>
+        <ProfileMenu />
       ) : (
         <>
           <Button
