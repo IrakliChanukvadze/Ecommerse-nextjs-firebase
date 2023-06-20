@@ -41,7 +41,9 @@ function SignInModal({ open, onClose }: Props) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        localStorage.setItem("gurromerceUser", JSON.stringify(d[0]));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("gurromerceUser", JSON.stringify(d[0]));
+        }
         setCurrentUser(d[0]);
         onClose();
         reset({
