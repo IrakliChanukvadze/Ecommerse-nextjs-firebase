@@ -8,6 +8,7 @@ export const getCategory = async (category: string) => {
   const data: any = await getDocs(q);
   const products: Products = data.docs.map((item: any) => ({
     ...item.data(),
+    uid: item.id,
   }));
   return products;
 };

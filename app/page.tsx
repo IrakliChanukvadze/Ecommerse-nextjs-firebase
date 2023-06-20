@@ -1,14 +1,14 @@
 import { getProducts } from "@/libs/getAllProducts";
 import SingleItem from "@/components/SingleItem";
 import { Grid } from "@/components/muiComponents/Mui";
-import { addToCart } from "@/libs/addToCart";
 
-export default async function Home() {
-  let data = await getProducts();
-  // const props = { variant: "contained" };
-  // const filterCategory = async (category: string) => {
-  //   data = await getCategory(category);
-  // };
+
+import { Context } from "@/Context/context";
+import { useContext } from "react";
+
+export default function Home() {
+  const { data } = useContext(Context);
+
 
   return (
     <Grid
@@ -18,9 +18,19 @@ export default async function Home() {
       alignItems="center"
       marginTop={"25px"}
     >
-      {data?.map((item) => (
-        <SingleItem {...item} key={item.id} />
-      ))}
+      {data
+        ?.sort(function (a, b) {
+          return b.id - a.id;
+        })
+        .map((item, index) => {
+          return (
+            <SingleItem
+              {...item}
+              key={item.id}
+              id={index === 0 ? item.id : -1}
+            />
+          );
+        })}
     </Grid>
   );
 }

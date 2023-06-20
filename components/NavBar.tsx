@@ -20,12 +20,10 @@ function NavBar() {
         <Typography variant="h6">Gurromerce</Typography>
       </Link>
       <NavBarMenu />
-      <Box display={"flex"} alignItems={"center"} gap="10px">
-        <AuthContainer />
-        <Link href="/cart" style={{ color: "white" }}>
-          <AiOutlineShoppingCart fontSize="30px" />
-        </Link>
+
+      <Box display={"flex"} alignItems={"center"}>
         <TogglerNav />
+        <AuthContainer />
       </Box>
     </Box>
   );

@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <ContextProvider>
         <MuiThemeProvider>
-          <body>
+          <body suppressHydrationWarning={true}>
             <NavBar />
             <Box paddingX={"30px"}>{children}</Box>
           </body>
