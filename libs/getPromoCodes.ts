@@ -8,6 +8,7 @@ export const getPromoCodes: GetPromoCodes = async () => {
 
   const promoCodes: PromoCodes = data.docs.map((item: any) => ({
     ...item.data(),
+    uid: item.id,
   }));
   // console.log(promoCodes);
   return promoCodes;

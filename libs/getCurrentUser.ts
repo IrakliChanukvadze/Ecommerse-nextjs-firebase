@@ -6,8 +6,9 @@ const productsCollectionRef = collection(db, "users");
 export const getCurrentUser = async (email: string) => {
   const q = query(productsCollectionRef, where("email", "==", email));
   const data: any = await getDocs(q);
-  const user: User = data.docs.map((item: any) => ({
+  const user: User[] = data.docs.map((item: any) => ({
     ...item.data(),
+    uid: item.id,
   }));
   return user;
 };
