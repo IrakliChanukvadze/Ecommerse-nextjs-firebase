@@ -61,6 +61,14 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
       );
     });
   }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("gurromerceUser", JSON.stringify(currentUser));
+      }
+    }
+  }, [currentUser]);
   return (
     <Context.Provider
       value={{
