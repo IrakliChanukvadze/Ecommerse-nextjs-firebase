@@ -120,7 +120,9 @@ export default function BasicMenu() {
           onClick={() => {
             handleClose();
             setCurrentUser(null);
-            localStorage.removeItem("gurromerceUser");
+            if (typeof window !== "undefined") {
+              localStorage.removeItem("gurromerceUser");
+            }
           }}
         >
           <Typography

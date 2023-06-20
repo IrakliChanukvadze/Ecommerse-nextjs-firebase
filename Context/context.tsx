@@ -28,11 +28,8 @@ type Theme = "dark" | "light";
 
 function ContextProvider({ children }: { children: React.ReactNode }) {
   const [toggler, setToggler] = useState<Theme>("dark");
-  const [currentUser, setCurrentUser] = useState<User | null>(
-    localStorage.getItem("gurromerceUser")
-      ? JSON.parse(localStorage.getItem("gurromerceUser") as string)
-      : null
-  );
+
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [prevId, setPrevId] = useState<number>(0);
   const [data, setData] = useState<Products>([]);
   const changeToggle = () => {
@@ -40,6 +37,13 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (localStorage.getItem("gurromerceUser")) {
+        setCurrentUser(
+          JSON.parse(localStorage.getItem("gurromerceUser") as string)
+        );
+      }
+    }
     // seting data first time
     const fetchData = async () => {
       const d = await getProducts();
