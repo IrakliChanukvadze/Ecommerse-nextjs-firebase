@@ -3,9 +3,11 @@ import { Metadata } from "next";
 import { getSingleProduct } from "@/libs/getSingleProducts";
 
 import Image from "next/image";
-import { Typography, Card, Grid, Button } from "@/components/muiComponents/Mui";
+import { Typography, Card, Grid, Box } from "@/components/muiComponents/Mui";
 import PromoCodeInput from "./PromoCodeInput";
 import { getPromoCodes } from "@/libs/getPromoCodes";
+import AddToCartButton from "./AddToCartButton";
+import BuyCard from "./BuyCard";
 
 type Params = {
   params: {
@@ -29,71 +31,54 @@ async function ProductPage({ params: { id } }: Params) {
   const promoCodes = await getPromoCodes();
 
   return (
-    <Grid container>
+    <Box display="flex" justifyContent="center">
       {data.map((item) => (
         <Grid
           container
           key={item.id}
           display="grid"
-          gridTemplateRows="1fr 1fr"
-          spacing={5}
+          gridTemplateRows="1fr 1.5fr"
+          width="80%"
         >
-          <Grid item>
-            <Typography variant="h4" padding="100px 220px">
-              {item.title}
-            </Typography>
+          <Grid item display="flex" alignItems="center">
+            <Typography variant="h4">{item.title}</Typography>
           </Grid>
-          <Grid container>
-            <Grid
-              item
-              xs={8}
-              md={6}
-              sx={{ margin: "auto" }}
-              display={"flex"}
-              justifyContent={"center"}
-              spacing={40}
-            >
-              <Image
-                src={item.image}
-                alt="product"
-                width={300}
-                height={300}
-                style={{
-                  padding: "10px",
-                  borderRadius: "20px",
-                }}
-              />
-            </Grid>
-            <Grid
-              item
-              xs={8}
-              md={6}
-              sx={{ margin: "auto" }}
-              display={"flex"}
-              justifyContent={"center"}
-            >
-              <Card
-                sx={{
-                  width: "300px",
-                  height: "300px",
-                  padding: "20px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
+          <Grid item>
+            <Grid container>
+              <Grid item xs={8} md={8}>
+                <Box display="flex" justifyContent="space-between">
+                  <Image
+                    src={item.image}
+                    alt="product"
+                    width={300}
+                    height={300}
+                    style={{
+                      borderRadius: "20px",
+                    }}
+                  />
+                  <Typography width="60%">{item.description}</Typography>
+                </Box>
+              </Grid>
+
+              <Grid
+                item
+                xs={8}
+                md={4}
+                sx={{ margin: "auto" }}
+                display={"flex"}
+                justifyContent={"center"}
               >
-                <Typography variant="h5">
-                  <strong>$ {item.price}</strong>
-                  <hr />
-                </Typography>
-                <PromoCodeInput promoCodes={promoCodes} />
-                <Button variant="contained">Add to cart</Button>
-              </Card>
+                <BuyCard
+                  data={data}
+                  price={item.price}
+                  promoCodes={promoCodes}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
       ))}
-    </Grid>
+    </Box>
   );
 }
 

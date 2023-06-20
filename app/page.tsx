@@ -1,12 +1,14 @@
-"use client";
 import { getProducts } from "@/libs/getAllProducts";
 import SingleItem from "@/components/SingleItem";
 import { Grid } from "@/components/muiComponents/Mui";
+
+
 import { Context } from "@/Context/context";
 import { useContext } from "react";
 
 export default function Home() {
   const { data } = useContext(Context);
+
 
   return (
     <Grid

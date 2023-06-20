@@ -9,12 +9,14 @@ type Product = {
   price: number;
   rating: { rate: number; count: number };
   title: string;
+  amount: number;
   fetchData: () => void;
 };
 
 type User = {
   email: string;
   balance: number;
+
   orders:
     | {
         totalSum: number;
