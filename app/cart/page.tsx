@@ -1,11 +1,16 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { useGetCartItems } from "../hooks/useGetCartItems";
 import CartItem from "./CartItem";
 import { Box } from "@/components/muiComponents/Mui";
+import { Context } from "@/Context/context";
 
 function Cart() {
+  const { currentUser } = useContext(Context);
   const cartItems = useGetCartItems();
+
+  if (!currentUser)
+    return <strong>You don&apos;t have permission to visit this page!</strong>;
 
   return (
     <Box
@@ -17,11 +22,12 @@ function Cart() {
     >
       {cartItems?.map((item) => (
         <CartItem
-          key={item.id}
+          key={item.id + item.price}
           title={item.title}
           price={item.price}
           amount={item.amount}
           imgUrl={item.image}
+          product={item}
         />
       ))}
 

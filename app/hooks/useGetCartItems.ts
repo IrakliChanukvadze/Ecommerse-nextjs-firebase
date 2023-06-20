@@ -6,11 +6,14 @@ import { getCartItems } from "@/libs/getCartItems";
 export function useGetCartItems() {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const { currentUser } = useContext(Context);
+
   useEffect(() => {
-    getCartItems(currentUser?.email!).then((data) => {
-      setCartItems(data);
-    });
-  }, [currentUser?.email]);
+    if (currentUser) {
+      getCartItems(currentUser?.email!).then((data) => {
+        setCartItems(data);
+      });
+    }
+  }, [currentUser?.email, currentUser]);
 
   return cartItems;
 }

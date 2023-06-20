@@ -5,16 +5,17 @@ import { Button } from "@/components/muiComponents/Mui";
 import React, { useContext } from "react";
 
 type Props = {
+  price: number;
   product: Product[];
 };
 
 function AddToCartButton(props: Props) {
   const { currentUser } = useContext(Context);
-  const handleAddToCart = useAddToCart();
+  const handleAddToCart = useAddToCart()!;
 
   function handleClick() {
-    handleAddToCart(props.product[0]);
-    console.log(props.product[0]);
+    handleAddToCart({ ...props.product[0], price: props.price });
+    console.log({ ...props.product[0], price: props.price });
   }
 
   return (

@@ -5,6 +5,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 type PromoCodeInputProps = {
   promoCodes: PromoCodes;
   price: number;
+  setPrice: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function PromoCodeInput(props: PromoCodeInputProps) {
@@ -23,6 +24,7 @@ function PromoCodeInput(props: PromoCodeInputProps) {
       });
       if (validation) {
         setPromoCodeIsValid(true);
+        props.setPrice((prev) => prev * props.promoCodes[0][promoCode]);
       } else {
         setPromoCodeIsValid(false);
       }

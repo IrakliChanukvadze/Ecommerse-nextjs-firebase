@@ -3,16 +3,11 @@ import { Metadata } from "next";
 import { getSingleProduct } from "@/libs/getSingleProducts";
 
 import Image from "next/image";
-import {
-  Typography,
-  Card,
-  Grid,
-  Button,
-  Box,
-} from "@/components/muiComponents/Mui";
+import { Typography, Card, Grid, Box } from "@/components/muiComponents/Mui";
 import PromoCodeInput from "./PromoCodeInput";
 import { getPromoCodes } from "@/libs/getPromoCodes";
 import AddToCartButton from "./AddToCartButton";
+import BuyCard from "./BuyCard";
 
 type Params = {
   params: {
@@ -73,23 +68,11 @@ async function ProductPage({ params: { id } }: Params) {
                 display={"flex"}
                 justifyContent={"center"}
               >
-                <Card
-                  sx={{
-                    width: "300px",
-                    height: "300px",
-                    padding: "20px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Typography variant="h5">
-                    <strong>$ {item.price}</strong>
-                    <hr />
-                  </Typography>
-                  <PromoCodeInput price={item.price} promoCodes={promoCodes} />
-                  <AddToCartButton product={data} />
-                </Card>
+                <BuyCard
+                  data={data}
+                  price={item.price}
+                  promoCodes={promoCodes}
+                />
               </Grid>
             </Grid>
           </Grid>

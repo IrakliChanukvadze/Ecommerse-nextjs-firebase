@@ -1,12 +1,14 @@
-import { Box, Card } from "@/components/muiComponents/Mui";
+import { Box, Button, Card } from "@/components/muiComponents/Mui";
 import Image from "next/image";
 import React from "react";
+import CartActions from "./CartActions";
 
 type CartItemProps = {
   title: string;
   price: number;
   amount: number;
   imgUrl: string;
+  product: Product;
 };
 
 function CartItem(props: CartItemProps) {
@@ -17,6 +19,7 @@ function CartItem(props: CartItemProps) {
         gap="20px"
         padding="15px"
         justifyContent="space-between"
+        alignItems="center"
       >
         <Image src={props.imgUrl} alt="img" width={200} height={200} />
         <Box width="300px">
@@ -26,9 +29,7 @@ function CartItem(props: CartItemProps) {
             <strong>{props.price} $</strong>
           </Box>
         </Box>
-        <Box alignSelf="center" justifySelf="flex-end">
-          {props.amount}
-        </Box>
+        <CartActions amount={props.amount} product={props.product} />
       </Box>
     </Card>
   );
