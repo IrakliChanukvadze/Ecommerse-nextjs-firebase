@@ -1,5 +1,4 @@
 "use client";
-import { getProducts } from "@/libs/getAllProducts";
 import SingleItem from "@/components/SingleItem";
 import { Grid } from "@/components/muiComponents/Mui";
 import { Context } from "@/Context/context";
