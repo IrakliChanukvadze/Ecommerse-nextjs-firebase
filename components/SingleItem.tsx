@@ -16,7 +16,11 @@ type TextField = {
   id: number;
 };
 
-function SingleItem(props: Product) {
+type Props = {
+  index: number;
+} & Product;
+
+function SingleItem(props: Props) {
   const { currentUser, setPrevId } = useContext(Context);
   const [edit, setEdit] = useState(false);
   const [textFieldState, setTextFieldState] = useState({
@@ -25,7 +29,7 @@ function SingleItem(props: Product) {
   });
   useEffect(() => {
     setTextFieldState({ title: props.title, price: props.price });
-    if (props.id !== -1) {
+    if (props.index === 0) {
       setPrevId(props.id + 1);
     }
   }, []);
