@@ -36,7 +36,7 @@ type User = {
       }[]
     | [];
 
-  cart: object;
+  cart: Product[];
   isAdmin: boolean;
   uid: "string";
 };
