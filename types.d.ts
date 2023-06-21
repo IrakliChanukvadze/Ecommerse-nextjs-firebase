@@ -11,6 +11,7 @@ type Product = {
   title: string;
   amount: number;
   fetchData: () => void;
+  index: number;
 };
 
 type User = {

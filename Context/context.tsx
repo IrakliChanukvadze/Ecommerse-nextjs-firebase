@@ -2,7 +2,7 @@
 import { db } from "@/libs/firebase";
 import { getProducts } from "@/libs/getAllProducts";
 import { collection, onSnapshot } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 
 type Context = {
   toggler: Theme;
