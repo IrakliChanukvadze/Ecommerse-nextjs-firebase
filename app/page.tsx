@@ -1,7 +1,6 @@
 "use client";
 import SingleItem from "@/components/SingleItem";
 import { Grid } from "@/components/muiComponents/Mui";
-
 import { Context } from "@/Context/context";
 import { useContext } from "react";
 
@@ -21,13 +20,7 @@ export default function Home() {
           return b.id - a.id;
         })
         .map((item, index) => {
-          return (
-            <SingleItem
-              {...item}
-              key={item.id}
-              id={index === 0 ? item.id : -1}
-            />
-          );
+          return <SingleItem {...item} key={item.id} index={index} />;
         })}
     </Grid>
   );
